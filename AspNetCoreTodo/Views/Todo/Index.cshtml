@@ -1,0 +1,29 @@
+﻿@model TodoListViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+@await Html.PartialAsync("AddItemListView", new TodoItemList())
+
+
+@foreach (var itemList in Model.TodoItemLists)
+{
+    <div class="card ">
+        <div class="card-body ">
+            <h4 class="card-title ">@itemList.TodoItemListName</h4>
+            <p class="card-text">Some example text. Some example text.</p>
+            <a href="#" class="card-link"></a>
+            <a href="#" class="card-link">Another link</a>
+            <a asp-controller="Todo" asp-action="ItemList" asp-route-id="@itemList.Id">View</a>
+            @await Html.PartialAsync("RemoveItemListView", @itemList)
+
+            
+      
+
+
+
+        </div>
+    </div>
+
+}
+

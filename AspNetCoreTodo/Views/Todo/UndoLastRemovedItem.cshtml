@@ -1,0 +1,7 @@
+﻿@model TodoItemList
+
+    <form asp-action="UndoLastRemovedItem" method="POST">
+        <input type="hidden" name="Id" asp-for="Id" value="@ViewBag.ItemList.Id" />
+        <button type="submit" class="btn btn-primary col-">Undo</button>
+
+    </form>
