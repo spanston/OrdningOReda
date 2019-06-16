@@ -1,0 +1,68 @@
+﻿<!-- Tells Razor which model to expect this view to be bound to>
+Model is accessed through model property -->
+@model AspNetCoreTodo.ViewModels.TodoViewModel
+@using Humanizer
+@{
+    ViewData["Title"] = "Manage your todo list";
+}
+
+    <div class="panel panel-default todo-panel">
+        <div class="panel-heading lead mb-2">@ViewData["Title"]</div>
+
+        <table class="table table-hover table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <td>&#x2714;</td>
+                    <td>Item</td>
+                    <td>Tag</td>
+                    <td>Due</td>
+                </tr>
+            </thead>
+            <!-- Loops over each to-do item and render a tablerow and a checkbox-->
+            @foreach (var item in Model.Items)
+            {
+                @if ((@item.DueAt.GetValueOrDefault().Subtract(DateTime.Now).TotalDays) <= 0)
+                {
+                    <tr class="bg-danger">
+                        <td>
+                            <form asp-action="MarkDone" method="POST">
+                                <input type="checkbox" class="done-checkbox">
+                                <input type="hidden" name="id" value="@item.Id" />
+                            </form>
+                        </td>
+                        <td><strong>@item.Title</strong></td>
+                        <td><strong>@item.ItemCategory</strong></td>
+                        <td><strong>@item.DueAt.Humanize()</strong></td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td>
+                            <form asp-action="MarkDone" method="POST">
+
+                                <input type="checkbox" class="done-checkbox">
+                                <input type="hidden" name="id" value="@item.Id" />
+                            </form>
+                        </td>
+                        <td><strong>@item.Title</strong></td>
+                        <td><strong>@item.ItemCategory</strong></td>
+                        <td><strong>@item.DueAt.Humanize()</strong></td>
+                    </tr>
+                }
+            }
+        </table>
+
+
+        <form class="form-row  mb-3" asp-action="AddItem" method="POST">
+            @await Html.PartialAsync("AddItemPartial", new TodoItem())
+            @await Html.PartialAsync("SelectTagPartial", new ItemCategory())
+
+
+        </form>
+
+        @await Html.PartialAsync("UndoLastRemovedItem", new TodoList())
+        @await Html.PartialAsync("AddNewTag", new ItemCategory())
+        @await Html.PartialAsync("RemoveTag", new ItemCategory())
+
+    </div>

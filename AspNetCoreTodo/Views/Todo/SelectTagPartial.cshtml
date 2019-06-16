@@ -1,0 +1,9 @@
+﻿@model ItemCategory
+    <div class="form-group col-12 col-md-4 ">
+        <label class="col-sm-12 col-md-12 " asp-for="ItemCategoryName">Choose a Tag:</label>
+        <select class="form-control  col-12 col-md-6 mb-2" asp-for="Id" asp-items="@(new SelectList(@ViewBag.listofTags, "Id","ItemCategoryName", "UserId"))"></select>
+        <button class="btn btn-secondary col-md-6" type="submit">Add Item</button>
+    </div>
+
+
+

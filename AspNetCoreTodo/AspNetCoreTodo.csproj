@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <UserSecretsId>aspnet-AspNetCoreTodo-16BCF58A-9F16-4A14-8392-1D5AA3D228E4</UserSecretsId>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\Todo\ItemList\**" />
+    <Content Remove="Views\Todo\ItemList\**" />
+    <EmbeddedResource Remove="Views\Todo\ItemList\**" />
+    <None Remove="Views\Todo\ItemList\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20190513202010_addedTodoList.cs" />
+    <Compile Remove="Data\Migrations\20190513202010_addedTodoList.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190513202513_itemlist2.cs" />
+    <Compile Remove="Data\Migrations\20190513202513_itemlist2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190513204431_test3.cs" />
+    <Compile Remove="Data\Migrations\20190513204431_test3.Designer.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Humanizer" Version="2.6.2" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+  </ItemGroup>
+
+</Project>

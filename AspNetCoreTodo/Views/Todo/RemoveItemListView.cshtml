@@ -1,0 +1,7 @@
+﻿@model TodoList
+
+<form asp-action="RemoveToDoItemList" method="POST">
+    <input type="hidden" name="Id" asp-for="Id" value="@Model.Id" />
+    <button type="submit" class="btn btn-primary col-">Undo</button>
+
+</form>
