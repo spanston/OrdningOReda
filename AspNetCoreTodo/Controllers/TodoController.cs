@@ -94,7 +94,7 @@ namespace AspNetCoreTodo.Controllers
         }
 
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddItem(TodoItem newItem, TodoList list,  ItemCategory itemCategory)
+        public async Task<IActionResult> AddItem(TodoItem newItem, TodoList list,  ItemTag itemTag)
         {
             
             if (!ModelState.IsValid)
@@ -108,7 +108,7 @@ namespace AspNetCoreTodo.Controllers
                 return Challenge();
             }
 
-            var successful = await _todoItemService.AddItemAsync(newItem, list, itemCategory, currentUser);
+            var successful = await _todoItemService.AddItemAsync(newItem, list, itemTag, currentUser);
             if (!successful)
             {
                 return BadRequest("Could not add item.");
@@ -144,7 +144,7 @@ namespace AspNetCoreTodo.Controllers
 
 
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddItemCategory(ItemCategory newCategory)
+        public async Task<IActionResult> AddItemCategory(ItemTag newTag)
         {
             if (!ModelState.IsValid)
             {
@@ -153,17 +153,17 @@ namespace AspNetCoreTodo.Controllers
             
 
             var currentUser = await _userManager.GetUserAsync(User);
-            var itemList = await _todoListService.GetTodoListById(currentUser, newCategory.ItemListId);
+            var itemList = await _todoListService.GetTodoListById(currentUser, newTag.ItemListId);
             if (currentUser == null)
             {
                 return Challenge();
             }
-            var successful = await _todoItemService.AddNewItemCategoryAsync(newCategory, currentUser);
+            var successful = await _todoItemService.AddNewItemCategoryAsync(newTag, currentUser);
 
             return RedirectToAction("ItemList", "Todo", itemList);
         }
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RemoveItemCategory(ItemCategory newCategory)
+        public async Task<IActionResult> RemoveItemCategory(ItemTag newTag)
         {
             if (!ModelState.IsValid)
             {
@@ -176,9 +176,9 @@ namespace AspNetCoreTodo.Controllers
             {
                 return Challenge();
             }
-            var itemList = await _todoListService.GetTodoListById(currentUser, newCategory.ItemListId);
+            var itemList = await _todoListService.GetTodoListById(currentUser, newTag.ItemListId);
 
-            var successful = await _todoItemService.RemoveItemCategoryAsync(newCategory, currentUser);
+            var successful = await _todoItemService.RemoveItemCategoryAsync(newTag, currentUser);
 
 
             return RedirectToAction("ItemList", "Todo", itemList);

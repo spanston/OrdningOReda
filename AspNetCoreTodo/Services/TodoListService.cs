@@ -43,7 +43,7 @@ namespace AspNetCoreTodo.Services
             {
                 return false;
             }
-            //_context.ItemCategory.Add(itemCategory);
+            //_context.ItemTag.Add(itemCategory);
 
             var result = _context.Remove(_context.TodoItemList.Single(x => x.UserId == user.Id && x.Id == itemList));
 

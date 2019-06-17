@@ -33,7 +33,7 @@ namespace AspNetCoreTodo.Services
                 .ToArrayAsync();
         }
 
-        public async Task<bool> AddItemAsync(TodoItem newItem, TodoList list, ItemCategory itemTag, IdentityUser user)
+        public async Task<bool> AddItemAsync(TodoItem newItem, TodoList list, ItemTag itemTag, IdentityUser user)
         {
             newItem.Id = Guid.NewGuid();
             newItem.IsDone = false;
@@ -66,38 +66,38 @@ namespace AspNetCoreTodo.Services
             return saveResult == 1; //one entity should have been updated
         }
 
-        public async Task<IEnumerable<ItemCategory>> GetExistingItemCategoriesAsync(IdentityUser user, TodoList list)
+        public async Task<IEnumerable<ItemTag>> GetExistingItemCategoriesAsync(IdentityUser user, TodoList list)
         {
             return await _context.ItemCategory.
                 Where(x => x.UserId == user.Id && x.ItemListId == list.Id).ToListAsync();
         }
 
-        public async Task<bool> AddNewItemCategoryAsync(ItemCategory itemCategory, IdentityUser user)
+        public async Task<bool> AddNewItemCategoryAsync(ItemTag itemTag, IdentityUser user)
         {
-            itemCategory.UserId = user.Id;
-            itemCategory.Id = Guid.NewGuid();
+            itemTag.UserId = user.Id;
+            itemTag.Id = Guid.NewGuid();
 
-            if (itemCategory.ItemCategoryName == null)
+            if (itemTag.ItemCategoryName == null)
             {
                 return false;
             }
-            _context.ItemCategory.Add(itemCategory);
+            _context.ItemCategory.Add(itemTag);
             var saveResult = await _context.SaveChangesAsync();
 
             return saveResult == 1;
         }
 
-        public async Task<bool> RemoveItemCategoryAsync(ItemCategory itemCategory, IdentityUser user)
+        public async Task<bool> RemoveItemCategoryAsync(ItemTag itemTag, IdentityUser user)
         {
-            itemCategory.UserId = user.Id;
+            itemTag.UserId = user.Id;
 
-            if (itemCategory.Id == null)
+            if (itemTag.Id == null)
             {
                 return false;
             }
-            //_context.ItemCategory.Add(itemCategory);
+            //_context.ItemTag.Add(itemTag);
 
-            var result = _context.Remove(_context.ItemCategory.Single(x => x.UserId == user.Id && x.Id == itemCategory.Id && x.ItemListId == itemCategory.ItemListId));
+            var result = _context.Remove(_context.ItemCategory.Single(x => x.UserId == user.Id && x.Id == itemTag.Id && x.ItemListId == itemTag.ItemListId));
 
             var saveResult = await _context.SaveChangesAsync();
 

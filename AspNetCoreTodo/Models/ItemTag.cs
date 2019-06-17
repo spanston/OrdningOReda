@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreTodo.Models
 {
-    public class ItemCategory
+    public class ItemTag
     {
 
         public Guid Id { get; set; } //Globally unique identifier, long strings of letters and numbers

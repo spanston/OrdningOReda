@@ -1,8 +1,8 @@
 ﻿@model  TodoList
 <form asp-action="AddToDoItemList" method="POST">
-    <div class="form-group">
-        <label asp-for="TodoItemListName">Add a new Tag: </label>
-        <input asp-for="TodoItemListName" />
-        <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="form-group mt-2">
+        <label  asp-for="TodoItemListName">Add a new List: </label>
+        <input  asp-for="TodoItemListName" />
+        <button type="submit" class="btn btn-primary ">Add</button>
     </div>
 </form>

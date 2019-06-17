@@ -9,6 +9,10 @@ using Xunit;
 
 namespace AspNetCoreTodo.UnitTests
 {
+
+    
+
+
     public class TodoItemServiceShould
     {
         [Fact]
@@ -17,6 +21,7 @@ namespace AspNetCoreTodo.UnitTests
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseInMemoryDatabase(databaseName: "Test_AddNewItem").Options;
 
+            // Use a separate context to read data back from the "DB"
             using (var context = new ApplicationDbContext(options))
             {
                 var service = new TodoItemService(context);
@@ -27,11 +32,20 @@ namespace AspNetCoreTodo.UnitTests
                     UserName = "fake@example.com"
                 };
 
-                /*await service.AddItemAsync(new TodoItem
-                {
-                    Title = "Testing?"
-                }, fakeUser);*/
+                //var fakeItem = new TodoItem
+                //{
+                    
+
+                //}
+
+                //The last line creates a new to-do item called Testing?, and tells the service to save it to the (in-memory) database.
+
+                //await service.AddItemAsync(new TodoItem
+                //{
+                //    Title = "Testing?"
+                //}, fakeUser);
             }
+
             using (var context = new ApplicationDbContext(options))
             {
                 var itemsInDatabase = await context
