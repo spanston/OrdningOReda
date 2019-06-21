@@ -93,6 +93,7 @@ namespace AspNetCoreTodo.Controllers
             return RedirectToAction("Index");
         }
 
+        //TODO: Remove itemTag parameter
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddItem(TodoItem newItem, TodoList list,  ItemTag itemTag)
         {

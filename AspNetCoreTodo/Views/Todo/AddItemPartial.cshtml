@@ -5,7 +5,8 @@
         <input class="form-control col-12 col-md-6 ml-1 " id="itemTitle" asp-for="Title" />
     </div>
     <div class="form-group col-12 col-md-4">
-        <input type="hidden" name="ListId" asp-for="ItemListId" value="@ViewBag.ItemList.Id" />
+        <input type="hidden" name="ItemListId" asp-for="ItemListId" value="@ViewBag.ItemList.Id" />
+
         <label class="col-12 col-md-12" for="inputDate" asp-for="DueAt">Choose date</label>
         <input class="form-control col-12 col-md-6 ml-1 mr-1" id="inputDate" type="date" asp-for="DueAt" />
 
