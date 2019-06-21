@@ -22,7 +22,7 @@
                     <div class="modal-body">
                         <form asp-action="RemoveItemCategory" method="POST">
                             <div class="form-group">
-                                <input type="hidden" name="ListId" asp-for="ItemListId" value="@ViewBag.ItemList.Id" />
+                                <input type="hidden" name="ItemListId" asp-for="ItemListId" value="@ViewBag.ItemList.Id" />
                                 <label class="col-sm-12 col-md-5 " asp-for="ItemCategoryName">Remove tag:</label>
                                 <select class="form-control  col-12 col-md-6 mb-2" asp-for="Id" asp-items="@(new SelectList(@ViewBag.listofTags, "Id", "ItemCategoryName", "UserId"))"></select>
                                 <button type="submit" class="btn btn-primary col-">Remove</button>

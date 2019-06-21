@@ -11,7 +11,7 @@ namespace AspNetCoreTodo.Services
 {
     public class TodoListService : ITodoListService
     {
-        public readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public TodoListService(ApplicationDbContext context)
         {

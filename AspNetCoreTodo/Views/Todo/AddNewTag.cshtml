@@ -20,8 +20,8 @@
                         <div class="form-group">
                             <label class="col-" asp-for="ItemCategoryName">Add a new Tag: </label>
                             <input class="input-group col-" asp-for="ItemCategoryName" />
-                            <input type="hidden" name="ListId" asp-for="ItemListId" value="@ViewBag.ItemList.Id" />
-                            <button type="submit" class="btn btn-primary col-">Submit</button>
+                            <input type="hidden" name="ItemListId" asp-for="ItemListId" value="@ViewBag.ItemList.Id" />
+                            <button type="submit" class="btn btn-primary col-">Add tag</button>
                         </div>
                     </form>
 

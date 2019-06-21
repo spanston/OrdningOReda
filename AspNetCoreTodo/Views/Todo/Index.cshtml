@@ -12,7 +12,6 @@
         <div class="card-body align-content-center col-  ">
             <h4 class="card-title col-6 float-left">@itemList.TodoItemListName</h4>
             <a asp-controller="Todo" asp-action="ItemList" asp-route-id="@itemList.Id"> <button class="btn btn-primary col-2 float-left">View</button></a>
-
             @await Html.PartialAsync("RemoveItemListView", @itemList)
 
         </div>
