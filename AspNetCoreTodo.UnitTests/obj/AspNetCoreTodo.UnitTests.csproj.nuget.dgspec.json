@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\spans\\Desktop\\Programming\\Projects\\AspNetCoreTodo\\AspNetCoreTodo.UnitTests\\AspNetCoreTodo.UnitTests.csproj": {}
+    "C:\\Users\\spans\\Source\\Repos\\Todo-App\\AspNetCoreTodo.UnitTests\\AspNetCoreTodo.UnitTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\spans\\Desktop\\Programming\\Projects\\AspNetCoreTodo\\AspNetCoreTodo.UnitTests\\AspNetCoreTodo.UnitTests.csproj": {
+    "C:\\Users\\spans\\Source\\Repos\\Todo-App\\AspNetCoreTodo.UnitTests\\AspNetCoreTodo.UnitTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\spans\\Desktop\\Programming\\Projects\\AspNetCoreTodo\\AspNetCoreTodo.UnitTests\\AspNetCoreTodo.UnitTests.csproj",
+        "projectUniqueName": "C:\\Users\\spans\\Source\\Repos\\Todo-App\\AspNetCoreTodo.UnitTests\\AspNetCoreTodo.UnitTests.csproj",
         "projectName": "AspNetCoreTodo.UnitTests",
-        "projectPath": "C:\\Users\\spans\\Desktop\\Programming\\Projects\\AspNetCoreTodo\\AspNetCoreTodo.UnitTests\\AspNetCoreTodo.UnitTests.csproj",
+        "projectPath": "C:\\Users\\spans\\Source\\Repos\\Todo-App\\AspNetCoreTodo.UnitTests\\AspNetCoreTodo.UnitTests.csproj",
         "packagesPath": "C:\\Users\\spans\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\spans\\Desktop\\Programming\\Projects\\AspNetCoreTodo\\AspNetCoreTodo.UnitTests\\obj\\",
+        "outputPath": "C:\\Users\\spans\\Source\\Repos\\Todo-App\\AspNetCoreTodo.UnitTests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -30,8 +30,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "C:\\Users\\spans\\Desktop\\Programming\\Projects\\AspNetCoreTodo\\AspNetCoreTodo\\AspNetCoreTodo.csproj": {
-                "projectPath": "C:\\Users\\spans\\Desktop\\Programming\\Projects\\AspNetCoreTodo\\AspNetCoreTodo\\AspNetCoreTodo.csproj"
+              "C:\\Users\\spans\\Source\\Repos\\Todo-App\\AspNetCoreTodo\\AspNetCoreTodo.csproj": {
+                "projectPath": "C:\\Users\\spans\\Source\\Repos\\Todo-App\\AspNetCoreTodo\\AspNetCoreTodo.csproj"
               }
             }
           }
@@ -88,14 +88,14 @@
         }
       }
     },
-    "C:\\Users\\spans\\Desktop\\Programming\\Projects\\AspNetCoreTodo\\AspNetCoreTodo\\AspNetCoreTodo.csproj": {
+    "C:\\Users\\spans\\Source\\Repos\\Todo-App\\AspNetCoreTodo\\AspNetCoreTodo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\spans\\Desktop\\Programming\\Projects\\AspNetCoreTodo\\AspNetCoreTodo\\AspNetCoreTodo.csproj",
+        "projectUniqueName": "C:\\Users\\spans\\Source\\Repos\\Todo-App\\AspNetCoreTodo\\AspNetCoreTodo.csproj",
         "projectName": "AspNetCoreTodo",
-        "projectPath": "C:\\Users\\spans\\Desktop\\Programming\\Projects\\AspNetCoreTodo\\AspNetCoreTodo\\AspNetCoreTodo.csproj",
+        "projectPath": "C:\\Users\\spans\\Source\\Repos\\Todo-App\\AspNetCoreTodo\\AspNetCoreTodo.csproj",
         "packagesPath": "C:\\Users\\spans\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\spans\\Desktop\\Programming\\Projects\\AspNetCoreTodo\\AspNetCoreTodo\\obj\\",
+        "outputPath": "C:\\Users\\spans\\Source\\Repos\\Todo-App\\AspNetCoreTodo\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

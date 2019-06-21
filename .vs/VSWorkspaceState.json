@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\AspNetCoreTodo"
   ],
+  "SelectedNode": "\\AspNetCoreTodo\\Startup.cs",
   "PreviewInSolutionExplorer": false
 }
