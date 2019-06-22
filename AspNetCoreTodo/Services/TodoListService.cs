@@ -21,14 +21,14 @@ namespace AspNetCoreTodo.Services
 
         public async Task<IEnumerable<TodoList>> GetAllTodoListForUser(IdentityUser user)
         {
-            var itemLists = await _context.TodoItemList.Where(x => x.UserId == user.Id).ToListAsync();
+            var itemLists = await _context.TodoList.Where(x => x.UserId == user.Id).ToListAsync();
 
             return itemLists;
         }
 
         public async Task<TodoList> GetTodoListById(IdentityUser user, Guid listId)
         {
-            var itemList = await _context.TodoItemList.Where(x => x.Id == listId && x.UserId == user.Id)
+            var itemList = await _context.TodoList.Where(x => x.Id == listId && x.UserId == user.Id)
                 .SingleOrDefaultAsync();
 
             return itemList;
@@ -41,7 +41,7 @@ namespace AspNetCoreTodo.Services
                 return false;
             }
 
-            var result = _context.Remove(_context.TodoItemList.Single(x => x.UserId == user.Id && x.Id == listId));
+            var result = _context.Remove(_context.TodoList.Single(x => x.UserId == user.Id && x.Id == listId));
 
             var saveResult = await _context.SaveChangesAsync();
 
@@ -53,7 +53,7 @@ namespace AspNetCoreTodo.Services
             todoList.Id = new Guid();
             todoList.UserId = user.Id;
 
-            _context.TodoItemList.Add(todoList);
+            _context.TodoList.Add(todoList);
 
             var result = await _context.SaveChangesAsync();
 

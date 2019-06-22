@@ -10,12 +10,12 @@ namespace AspNetCoreTodo.Services
     {
         Task<TodoItem> GetItemByIdAsync(IdentityUser user, Guid itemId);
         Task<TodoItem[]> GetIncompleteItemsAsync(IdentityUser user, TodoList list);
-        Task<bool> AddItemAsync(TodoItem newItem, ItemTag itemTag, IdentityUser user);
+        Task<bool> AddItemAsync(TodoItem newItem, ItemCategory itemCategory, IdentityUser user);
         Task<bool> MarkDoneAsync(Guid id, IdentityUser user);
-        Task<IEnumerable<ItemTag>> GetExistingItemCategoriesAsync(IdentityUser user, TodoList list
+        Task<IEnumerable<ItemCategory>> GetExistingItemCategoriesAsync(IdentityUser user, TodoList list
         );
-        Task<bool> AddNewItemCategoryAsync(ItemTag itemTag, IdentityUser user);
-        Task<bool> RemoveItemCategoryAsync(ItemTag itemTag, IdentityUser user);
+        Task<bool> AddNewItemCategoryAsync(ItemCategory itemCategory, IdentityUser user);
+        Task<bool> RemoveItemCategoryAsync(ItemCategory itemCategory, IdentityUser user);
         Task<bool> UndoLastRemovedItem(IdentityUser user, TodoList undoList);
     }
 }

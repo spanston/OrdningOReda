@@ -9,7 +9,7 @@ namespace AspNetCoreTodo.ViewModels
     public class TodoViewModel
     {
         public TodoItem[] Items { get; set; }
-        public IEnumerable<ItemTag> PriorityTagsList { get; set; }
+        public IEnumerable<ItemCategory> PriorityTagsList { get; set; }
         public TodoList List { get; set; }
 
 

@@ -33,16 +33,16 @@ namespace AspNetCoreTodo.Services
                 .ToArrayAsync();
         }
 
-        public async Task<bool> AddItemAsync(TodoItem newItem, ItemTag itemTag, IdentityUser user)
+        public async Task<bool> AddItemAsync(TodoItem newItem, ItemCategory itemCategory, IdentityUser user)
         {
             newItem.Id = Guid.NewGuid();
             newItem.IsDone = false;
             newItem.UserId = user.Id;
+            newItem.ItemCategory = itemCategory.ItemCategoryName;
+
+            var itemTag = await _context.ItemCategory.Where(x => x.Id == itemCategory.Id).SingleOrDefaultAsync();
+
             newItem.ItemCategory = itemTag.ItemCategoryName;
-
-            var itemtag = await _context.ItemCategory.Where(x => x.Id == itemTag.Id).SingleOrDefaultAsync();
-
-            newItem.ItemCategory = itemtag.ItemCategoryName;
 
             _context.Items.Add(newItem);
 
@@ -89,33 +89,33 @@ namespace AspNetCoreTodo.Services
 
 
         /*Implementation for item categories*/
-        public async Task<IEnumerable<ItemTag>> GetExistingItemCategoriesAsync(IdentityUser user, TodoList list)
+        public async Task<IEnumerable<ItemCategory>> GetExistingItemCategoriesAsync(IdentityUser user, TodoList list)
         {
             return await _context.ItemCategory.Where(x => x.UserId == user.Id && x.ItemListId == list.Id).ToListAsync();
         }
 
-        public async Task<bool> AddNewItemCategoryAsync(ItemTag itemTag, IdentityUser user)
+        public async Task<bool> AddNewItemCategoryAsync(ItemCategory itemCategory, IdentityUser user)
         {
-            itemTag.UserId = user.Id;
-            itemTag.Id = Guid.NewGuid();
+            itemCategory.UserId = user.Id;
+            itemCategory.Id = Guid.NewGuid();
 
-            if (itemTag.ItemCategoryName == null)
+            if (itemCategory.ItemCategoryName == null)
             {
                 return false;
             }
 
-            _context.ItemCategory.Add(itemTag);
+            _context.ItemCategory.Add(itemCategory);
             var saveResult = await _context.SaveChangesAsync();
 
             return saveResult == 1;
         }
 
-        public async Task<bool> RemoveItemCategoryAsync(ItemTag itemTag, IdentityUser user)
+        public async Task<bool> RemoveItemCategoryAsync(ItemCategory itemCategory, IdentityUser user)
         {
-            itemTag.UserId = user.Id;
+            itemCategory.UserId = user.Id;
 
             var result = _context.Remove(_context.ItemCategory.Single(x =>
-                x.UserId == user.Id && x.Id == itemTag.Id && x.ItemListId == itemTag.ItemListId));
+                x.UserId == user.Id && x.Id == itemCategory.Id && x.ItemListId == itemCategory.ItemListId));
 
             var saveResult = await _context.SaveChangesAsync();
 

@@ -21,8 +21,8 @@ namespace AspNetCoreTodo.Data
         //DbSet represents a table or collection in the databse.
         //Telling EF Core to store TodoItem entities in a table called Items
         public DbSet<TodoItem> Items { get; set; }        
-        public DbSet<ItemTag> ItemCategory { get; set; }
-        public DbSet<TodoList> TodoItemList { get; set; }
+        public DbSet<ItemCategory> ItemCategory { get; set; }
+        public DbSet<TodoList> TodoList { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
