@@ -1,11 +1,10 @@
 ﻿
 @model TodoViewModel
 @using Humanizer
-@{
-    ViewData["Title"] = "Manage your todo list";
-}
 
-    <div class="panel panel-default todo-panel">
+<div class="text-center"><h1>@Model.List.TodoItemListName</h1></div>
+
+<div class="panel panel-default todo-panel">
         <div class="panel-heading lead mb-2">@ViewData["Title"]</div>
 
         <table class="table table-hover table-striped table-bordered">
@@ -17,7 +16,6 @@
                     <td>Due</td>
                 </tr>
             </thead>
-            <!-- Loops over each to-do item and render a tablerow and a checkbox-->
             @foreach (var item in Model.Items)
             {
                 @if ((@item.DueAt.GetValueOrDefault().Subtract(DateTime.Now).TotalDays) <= 0)

@@ -52,15 +52,17 @@ namespace AspNetCoreTodo.Controllers
             
             var items = await _todoItemService.GetIncompleteItemsAsync(currentUser, list);
             var categories = await _todoItemService.GetExistingItemCategoriesAsync(currentUser, list);
+            var itemList = await _todoListService.GetTodoListById(currentUser, list.Id);
 
-            ViewBag.listofTags = categories;
-            ViewBag.ItemList = list;
+            
+            ViewBag.listofTags = categories; //Used for select list
+            ViewBag.ItemList = itemList;
             // Put items into a model
             var model = new TodoViewModel()
             {
                 Items = items,
                 PriorityTagsList = categories,
-                List = list
+                List = itemList
             };
             //Render view using the model            
             return View(model);
