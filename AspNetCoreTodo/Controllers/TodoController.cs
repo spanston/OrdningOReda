@@ -41,8 +41,8 @@ namespace AspNetCoreTodo.Controllers
             };
             return View(model);
         }
-        //Returns a specific list with to-do items
-        public async Task<IActionResult> ItemList(TodoList list)
+        //Returns a specific todoList with to-do items
+        public async Task<IActionResult> ItemList(TodoList todoList)
         {
 
             var currentUser = await _userManager.GetUserAsync(User);
@@ -50,12 +50,12 @@ namespace AspNetCoreTodo.Controllers
 
             
             
-            var items = await _todoItemService.GetIncompleteItemsAsync(currentUser, list);
-            var categories = await _todoItemService.GetExistingItemCategoriesAsync(currentUser, list);
-            var itemList = await _todoListService.GetTodoListById(currentUser, list.Id);
+            var items = await _todoItemService.GetIncompleteItemsAsync(currentUser, todoList);
+            var categories = await _todoItemService.GetExistingItemCategoriesAsync(currentUser, todoList);
+            var itemList = await _todoListService.GetTodoListById(currentUser, todoList.Id);
 
             
-            ViewBag.listofTags = categories; //Used for select list
+            ViewBag.listofTags = categories; //Used for select todoList
             ViewBag.ItemList = itemList;
             // Put items into a model
             var model = new TodoViewModel()
@@ -201,7 +201,7 @@ namespace AspNetCoreTodo.Controllers
             {
                 return Challenge();
             }
-            //var list = await _todoListService.GetTodoListById(currentUser, list.ItemListId);
+            //var todoList = await _todoListService.GetTodoListById(currentUser, todoList.ItemListId);
             var successful = await _todoItemService.UndoLastRemovedItem(currentUser, list);
             return RedirectToAction("ItemList", "Todo", list);
         }

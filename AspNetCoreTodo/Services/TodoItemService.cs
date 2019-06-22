@@ -11,7 +11,7 @@ namespace AspNetCoreTodo.Services
 {
     public class TodoItemService : ITodoItemService
     {
-        public readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public TodoItemService(ApplicationDbContext context)
         {
@@ -19,16 +19,16 @@ namespace AspNetCoreTodo.Services
         }
 
 
-        public async Task<TodoItem> GetItemByIdAsync(IdentityUser user, Guid Id)
+        public async Task<TodoItem> GetItemByIdAsync(IdentityUser user, Guid itemId)
         {
-            return await _context.Items.Where(x => x.Id == Id && x.UserId == user.Id)
+            return await _context.Items.Where(x => x.Id == itemId && x.UserId == user.Id)
                 .SingleOrDefaultAsync();
         }
 
         public async Task<TodoItem[]> GetIncompleteItemsAsync(IdentityUser user, TodoList list)
         {
             return await _context.Items
-                .Where(x => x.IsDone == false && x.UserId == user.Id  && x.ItemListId == list.Id)
+                .Where(x => x.IsDone == false && x.UserId == user.Id && x.ItemListId == list.Id)
                 .OrderBy(x => x.DueAt)
                 .ToArrayAsync();
         }
@@ -66,10 +66,32 @@ namespace AspNetCoreTodo.Services
             return saveResult == 1; //one entity should have been updated
         }
 
+        public async Task<bool> UndoLastRemovedItem(IdentityUser user, TodoList undoList)
+        {
+            var item = await _context.Items
+                .Where(x => x.UserId == user.Id && x.IsDone == true && x.ItemListId == undoList.Id)
+                .OrderByDescending(x => x.DateRemoved)
+                .FirstOrDefaultAsync();
+
+            if (item == null)
+            {
+                return false;
+            }
+            else if (item.IsDone == true)
+            {
+                item.IsDone = false;
+                item.DateRemoved = null;
+            }
+
+            var saveResult = await _context.SaveChangesAsync();
+            return true;
+        }
+
+
+        /*Implementation for item categories*/
         public async Task<IEnumerable<ItemTag>> GetExistingItemCategoriesAsync(IdentityUser user, TodoList list)
         {
-            return await _context.ItemCategory.
-                Where(x => x.UserId == user.Id && x.ItemListId == list.Id).ToListAsync();
+            return await _context.ItemCategory.Where(x => x.UserId == user.Id && x.ItemListId == list.Id).ToListAsync();
         }
 
         public async Task<bool> AddNewItemCategoryAsync(ItemTag itemTag, IdentityUser user)
@@ -81,6 +103,7 @@ namespace AspNetCoreTodo.Services
             {
                 return false;
             }
+
             _context.ItemCategory.Add(itemTag);
             var saveResult = await _context.SaveChangesAsync();
 
@@ -91,37 +114,12 @@ namespace AspNetCoreTodo.Services
         {
             itemTag.UserId = user.Id;
 
-            if (itemTag.Id == null)
-            {
-                return false;
-            }
-            //_context.ItemTag.Add(itemTag);
-
-            var result = _context.Remove(_context.ItemCategory.Single(x => x.UserId == user.Id && x.Id == itemTag.Id && x.ItemListId == itemTag.ItemListId));
+            var result = _context.Remove(_context.ItemCategory.Single(x =>
+                x.UserId == user.Id && x.Id == itemTag.Id && x.ItemListId == itemTag.ItemListId));
 
             var saveResult = await _context.SaveChangesAsync();
 
             return saveResult == 1;
-        }
-
-        public async Task<bool> UndoLastRemovedItem(IdentityUser user, TodoList undoList)
-        {
-            var item = await _context.Items
-                .Where(x => x.UserId == user.Id && x.IsDone == true && x.ItemListId == undoList.Id)
-                .OrderByDescending(x => x.DateRemoved)
-               .FirstOrDefaultAsync();
-
-            if (item == null)
-            {
-                return false;
-            }
-            else if (item.IsDone == true)
-            {
-                item.IsDone = false;
-                item.DateRemoved = null;
-            }
-            var saveResult = await _context.SaveChangesAsync();
-            return true;
         }
     }
 }
