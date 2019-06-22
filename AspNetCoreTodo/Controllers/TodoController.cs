@@ -9,6 +9,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 
+//TODO: Change itemtag to itemcategory
+
 namespace AspNetCoreTodo.Controllers
 {
     [Authorize]
@@ -20,7 +22,8 @@ namespace AspNetCoreTodo.Controllers
         private readonly UserManager<IdentityUser> _userManager;
 
 
-        public TodoController(ITodoItemService todoItemService, ITodoListService todoListService, UserManager<IdentityUser> userManager)
+        public TodoController(ITodoItemService todoItemService, ITodoListService todoListService,
+            UserManager<IdentityUser> userManager)
         {
             _todoItemService = todoItemService;
             _userManager = userManager;
@@ -37,24 +40,22 @@ namespace AspNetCoreTodo.Controllers
             var model = new TodoListViewModel()
             {
                 TodoItemLists = todoLists
-
             };
             return View(model);
         }
+
         //Returns a specific todoList with to-do items
         public async Task<IActionResult> ItemList(TodoList todoList)
         {
-
             var currentUser = await _userManager.GetUserAsync(User);
             if (currentUser == null) return Challenge();
 
-            
-            
+
             var items = await _todoItemService.GetIncompleteItemsAsync(currentUser, todoList);
             var categories = await _todoItemService.GetExistingItemCategoriesAsync(currentUser, todoList);
             var itemList = await _todoListService.GetTodoListById(currentUser, todoList.Id);
 
-            
+
             ViewBag.listofTags = categories; //Used for select todoList
             ViewBag.ItemList = itemList;
             // Put items into a model
@@ -67,6 +68,7 @@ namespace AspNetCoreTodo.Controllers
             //Render view using the model            
             return View(model);
         }
+
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddToDoItemList(TodoList todoList)
         {
@@ -89,17 +91,16 @@ namespace AspNetCoreTodo.Controllers
             {
                 return Challenge();
             }
-            
+
             var successful = await _todoListService.RemoveTodoListForUser(currentUser, todoList.Id);
 
             return RedirectToAction("Index");
         }
 
-        
+
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddItem(TodoItem newItem,  ItemTag itemTag)
+        public async Task<IActionResult> AddItem(TodoItem newItem, ItemTag itemTag)
         {
-            
             if (!ModelState.IsValid)
             {
                 return RedirectToAction("ItemList");
@@ -112,14 +113,14 @@ namespace AspNetCoreTodo.Controllers
             }
 
             var successful = await _todoItemService.AddItemAsync(newItem, itemTag, currentUser);
+
             if (!successful)
             {
                 return BadRequest("Could not add item.");
             }
-            //TODO: find a better solution
-            return RedirectToAction("ItemList", "Todo", new TodoList{Id = newItem.ItemListId});
 
-
+            //TODO: Quickfix so far
+            return RedirectToAction("ItemList", "Todo", new TodoList {Id = newItem.ItemListId});
         }
 
         [ValidateAntiForgeryToken]
@@ -131,8 +132,7 @@ namespace AspNetCoreTodo.Controllers
             }
 
             var currentUser = await _userManager.GetUserAsync(User);
-            var item = await _todoItemService.GetItemByIdAsync(currentUser, id);
-            var itemList = await _todoListService.GetTodoListById(currentUser, item.ItemListId);
+            var itemMarkedDone = await _todoItemService.GetItemByIdAsync(currentUser, id);
             var successful = await _todoItemService.MarkDoneAsync(id, currentUser);
 
 
@@ -141,7 +141,7 @@ namespace AspNetCoreTodo.Controllers
                 return BadRequest("Could not mot mark item as done");
             }
 
-            return RedirectToAction("ItemList", "Todo", itemList);
+            return RedirectToAction("ItemList", "Todo", new TodoList {Id = itemMarkedDone.ItemListId});
         }
 
 
@@ -152,7 +152,7 @@ namespace AspNetCoreTodo.Controllers
             {
                 return RedirectToAction("ItemList");
             }
-            
+
 
             var currentUser = await _userManager.GetUserAsync(User);
             var itemList = await _todoListService.GetTodoListById(currentUser, newTag.ItemListId);
@@ -160,12 +160,15 @@ namespace AspNetCoreTodo.Controllers
             {
                 return Challenge();
             }
+
             var successful = await _todoItemService.AddNewItemCategoryAsync(newTag, currentUser);
 
             return RedirectToAction("ItemList", "Todo", itemList);
         }
+
+        //TODO: change name of itemtag
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RemoveItemCategory(ItemTag newTag)
+        public async Task<IActionResult> RemoveItemCategory(ItemTag tagToBeRemoved)
         {
             if (!ModelState.IsValid)
             {
@@ -178,14 +181,12 @@ namespace AspNetCoreTodo.Controllers
             {
                 return Challenge();
             }
-            var itemList = await _todoListService.GetTodoListById(currentUser, newTag.ItemListId);
-
-            var successful = await _todoItemService.RemoveItemCategoryAsync(newTag, currentUser);
 
 
-            return RedirectToAction("ItemList", "Todo", itemList);
+            var successful = await _todoItemService.RemoveItemCategoryAsync(tagToBeRemoved, currentUser);
+
+            return RedirectToAction("ItemList", "Todo", new TodoList {Id = tagToBeRemoved.ItemListId});
         }
-
 
 
         public async Task<IActionResult> UndoLastRemovedItem(TodoList list)
@@ -201,10 +202,9 @@ namespace AspNetCoreTodo.Controllers
             {
                 return Challenge();
             }
-            //var todoList = await _todoListService.GetTodoListById(currentUser, todoList.ItemListId);
+
             var successful = await _todoItemService.UndoLastRemovedItem(currentUser, list);
             return RedirectToAction("ItemList", "Todo", list);
         }
     }
 }
-
