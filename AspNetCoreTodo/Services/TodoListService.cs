@@ -21,31 +21,27 @@ namespace AspNetCoreTodo.Services
 
         public async Task<IEnumerable<TodoList>> GetAllTodoListForUser(IdentityUser user)
         {
-
             var itemLists = await _context.TodoItemList.Where(x => x.UserId == user.Id).ToListAsync();
 
             return itemLists;
-
         }
 
-        public async Task<TodoList> GetTodoListById(IdentityUser user, Guid id)
+        public async Task<TodoList> GetTodoListById(IdentityUser user, Guid listId)
         {
-
-            var itemList = await _context.TodoItemList.Where(x => x.Id == id && x.UserId == user.Id).SingleOrDefaultAsync();
+            var itemList = await _context.TodoItemList.Where(x => x.Id == listId && x.UserId == user.Id)
+                .SingleOrDefaultAsync();
 
             return itemList;
         }
 
-        public async Task<bool> RemoveTodoListForUser(IdentityUser user, Guid itemList)
+        public async Task<bool> RemoveTodoListForUser(IdentityUser user, Guid listId)
         {
-
-            if (itemList == null)
+            if (listId == null)
             {
                 return false;
             }
-            //_context.ItemTag.Add(itemCategory);
 
-            var result = _context.Remove(_context.TodoItemList.Single(x => x.UserId == user.Id && x.Id == itemList));
+            var result = _context.Remove(_context.TodoItemList.Single(x => x.UserId == user.Id && x.Id == listId));
 
             var saveResult = await _context.SaveChangesAsync();
 
@@ -59,9 +55,9 @@ namespace AspNetCoreTodo.Services
 
             _context.TodoItemList.Add(todoList);
 
-             var result = await _context.SaveChangesAsync();
+            var result = await _context.SaveChangesAsync();
 
-             return true;
+            return result == 1;
         }
     }
 }

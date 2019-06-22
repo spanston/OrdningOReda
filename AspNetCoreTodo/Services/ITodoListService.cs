@@ -10,8 +10,8 @@ namespace AspNetCoreTodo.Services
     {
         //Get all the tables that belongs to user
         Task<IEnumerable<TodoList>> GetAllTodoListForUser(IdentityUser user);
-        Task<TodoList> GetTodoListById(IdentityUser user, Guid id);
-        Task<bool> RemoveTodoListForUser(IdentityUser user, Guid itemList);
+        Task<TodoList> GetTodoListById(IdentityUser user, Guid listId);
+        Task<bool> RemoveTodoListForUser(IdentityUser user, Guid listId);
 
         Task<bool> AddTodoListForUser(IdentityUser user, TodoList list);
 

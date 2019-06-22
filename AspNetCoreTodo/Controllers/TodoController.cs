@@ -20,11 +20,11 @@ namespace AspNetCoreTodo.Controllers
         private readonly UserManager<IdentityUser> _userManager;
 
 
-        public TodoController(ITodoItemService todoItemService, ITodoListService todoListSericve, UserManager<IdentityUser> userManager)
+        public TodoController(ITodoItemService todoItemService, ITodoListService todoListService, UserManager<IdentityUser> userManager)
         {
             _todoItemService = todoItemService;
             _userManager = userManager;
-            _todoListService = todoListSericve;
+            _todoListService = todoListService;
         }
 
         public async Task<IActionResult> Index()
@@ -32,11 +32,11 @@ namespace AspNetCoreTodo.Controllers
             var currentUser = await _userManager.GetUserAsync(User);
             if (currentUser == null) return Challenge();
 
-            var todoItemLists = await _todoListService.GetAllTodoListForUser(currentUser);
+            var todoLists = await _todoListService.GetAllTodoListForUser(currentUser);
 
             var model = new TodoListViewModel()
             {
-                TodoItemLists = todoItemLists
+                TodoItemLists = todoLists
 
             };
             return View(model);
@@ -76,7 +76,7 @@ namespace AspNetCoreTodo.Controllers
                 return Challenge();
             }
             //TODO: Value is not used, returns how many saved...
-            var successful = await _todoListService.AddTodoListForUser(currentUser, todoList);
+            //var successful = await _todoListService.AddTodoListForUser(currentUser, todoList);
 
             return RedirectToAction("Index");
         }
@@ -95,9 +95,9 @@ namespace AspNetCoreTodo.Controllers
             return RedirectToAction("Index");
         }
 
-        //TODO: Remove itemTag parameter
+        
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddItem(TodoItem newItem, TodoList list,  ItemTag itemTag)
+        public async Task<IActionResult> AddItem(TodoItem newItem,  ItemTag itemTag)
         {
             
             if (!ModelState.IsValid)
@@ -111,14 +111,13 @@ namespace AspNetCoreTodo.Controllers
                 return Challenge();
             }
 
-            var successful = await _todoItemService.AddItemAsync(newItem, list, itemTag, currentUser);
+            var successful = await _todoItemService.AddItemAsync(newItem, itemTag, currentUser);
             if (!successful)
             {
                 return BadRequest("Could not add item.");
             }
             //TODO: find a better solution
-            list.Id = newItem.ItemListId;
-            return RedirectToAction("ItemList", "Todo", list);
+            return RedirectToAction("ItemList", "Todo", new TodoList{Id = newItem.ItemListId});
 
 
         }

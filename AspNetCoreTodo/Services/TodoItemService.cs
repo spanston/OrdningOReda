@@ -33,7 +33,7 @@ namespace AspNetCoreTodo.Services
                 .ToArrayAsync();
         }
 
-        public async Task<bool> AddItemAsync(TodoItem newItem, TodoList list, ItemTag itemTag, IdentityUser user)
+        public async Task<bool> AddItemAsync(TodoItem newItem, ItemTag itemTag, IdentityUser user)
         {
             newItem.Id = Guid.NewGuid();
             newItem.IsDone = false;
