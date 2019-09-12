@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\spans\\Source\\Repos\\Todo-App\\AspNetCoreTodo.IntegrationTests\\AspNetCoreTodo.IntegrationTests.csproj": {}
+    "C:\\Users\\DAtor\\Source\\Repos\\OrdningOReda\\AspNetCoreTodo.IntegrationTests\\AspNetCoreTodo.IntegrationTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\spans\\Source\\Repos\\Todo-App\\AspNetCoreTodo.IntegrationTests\\AspNetCoreTodo.IntegrationTests.csproj": {
+    "C:\\Users\\DAtor\\Source\\Repos\\OrdningOReda\\AspNetCoreTodo.IntegrationTests\\AspNetCoreTodo.IntegrationTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\spans\\Source\\Repos\\Todo-App\\AspNetCoreTodo.IntegrationTests\\AspNetCoreTodo.IntegrationTests.csproj",
+        "projectUniqueName": "C:\\Users\\DAtor\\Source\\Repos\\OrdningOReda\\AspNetCoreTodo.IntegrationTests\\AspNetCoreTodo.IntegrationTests.csproj",
         "projectName": "AspNetCoreTodo.IntegrationTests",
-        "projectPath": "C:\\Users\\spans\\Source\\Repos\\Todo-App\\AspNetCoreTodo.IntegrationTests\\AspNetCoreTodo.IntegrationTests.csproj",
-        "packagesPath": "C:\\Users\\spans\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\spans\\Source\\Repos\\Todo-App\\AspNetCoreTodo.IntegrationTests\\obj\\",
+        "projectPath": "C:\\Users\\DAtor\\Source\\Repos\\OrdningOReda\\AspNetCoreTodo.IntegrationTests\\AspNetCoreTodo.IntegrationTests.csproj",
+        "packagesPath": "C:\\Users\\DAtor\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DAtor\\Source\\Repos\\OrdningOReda\\AspNetCoreTodo.IntegrationTests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\spans\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DAtor\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -30,8 +30,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "C:\\Users\\spans\\Source\\Repos\\Todo-App\\AspNetCoreTodo\\AspNetCoreTodo.csproj": {
-                "projectPath": "C:\\Users\\spans\\Source\\Repos\\Todo-App\\AspNetCoreTodo\\AspNetCoreTodo.csproj"
+              "C:\\Users\\DAtor\\Source\\Repos\\OrdningOReda\\AspNetCoreTodo\\AspNetCoreTodo.csproj": {
+                "projectPath": "C:\\Users\\DAtor\\Source\\Repos\\OrdningOReda\\AspNetCoreTodo\\AspNetCoreTodo.csproj"
               }
             }
           }
@@ -80,20 +80,20 @@
         }
       }
     },
-    "C:\\Users\\spans\\Source\\Repos\\Todo-App\\AspNetCoreTodo\\AspNetCoreTodo.csproj": {
+    "C:\\Users\\DAtor\\Source\\Repos\\OrdningOReda\\AspNetCoreTodo\\AspNetCoreTodo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\spans\\Source\\Repos\\Todo-App\\AspNetCoreTodo\\AspNetCoreTodo.csproj",
+        "projectUniqueName": "C:\\Users\\DAtor\\Source\\Repos\\OrdningOReda\\AspNetCoreTodo\\AspNetCoreTodo.csproj",
         "projectName": "AspNetCoreTodo",
-        "projectPath": "C:\\Users\\spans\\Source\\Repos\\Todo-App\\AspNetCoreTodo\\AspNetCoreTodo.csproj",
-        "packagesPath": "C:\\Users\\spans\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\spans\\Source\\Repos\\Todo-App\\AspNetCoreTodo\\obj\\",
+        "projectPath": "C:\\Users\\DAtor\\Source\\Repos\\OrdningOReda\\AspNetCoreTodo\\AspNetCoreTodo.csproj",
+        "packagesPath": "C:\\Users\\DAtor\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DAtor\\Source\\Repos\\OrdningOReda\\AspNetCoreTodo\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\spans\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DAtor\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
