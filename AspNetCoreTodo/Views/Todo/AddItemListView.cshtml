@@ -1,8 +1,36 @@
 ﻿@model  TodoList
-<form asp-action="AddToDoItemList" method="POST">
-    <div class="form-group mt-2">
-        <label  asp-for="TodoItemListName">Add a new ItemList: </label>
-        <input  asp-for="TodoItemListName" />
-        <button type="submit" class="btn btn-primary ">Add</button>
+<div class="form-group col-12 col-md-3 float-left">
+    <button type="button" class="btn btn-primary col- mt-1" data-toggle="modal" data-target="#myModal">
+        Add new Todo-list
+    </button>
+
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Add new list</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form asp-action="AddToDoItemList" method="POST">
+                        <div class="form-group mt-2">
+                            <label  asp-for="TodoItemListName">Add a new ItemList: </label>
+                            <input  asp-for="TodoItemListName" />
+                            <button type="submit" class="btn btn-primary ">Add</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
     </div>
-</form>
+</div>

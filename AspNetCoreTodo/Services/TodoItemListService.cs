@@ -19,19 +19,19 @@ namespace AspNetCoreTodo.Services
         }
 
 
-        public async Task<IEnumerable<TodoItemList>> GetAllItemListForUser(IdentityUser user)
+        public async Task<IEnumerable<TodoList>> GetAllItemListForUser(IdentityUser user)
         {
 
-            var itemLists = await _context.TodoItemList.Where(x => x.UserId == user.Id).ToListAsync();
+            var itemLists = await _context.TodoList.Where(x => x.UserId == user.Id).ToListAsync();
 
             return itemLists;
 
         }
 
-        public async Task<TodoItemList> GetItemListById(IdentityUser user, Guid id)
+        public async Task<TodoList> GetItemListById(IdentityUser user, Guid id)
         {
 
-            var itemList = await _context.TodoItemList.Where(x => x.Id == id && x.UserId == user.Id).SingleOrDefaultAsync();
+            var itemList = await _context.TodoList.Where(x => x.Id == id && x.UserId == user.Id).SingleOrDefaultAsync();
 
             return itemList;
         }
@@ -45,19 +45,19 @@ namespace AspNetCoreTodo.Services
             }
             //_context.ItemCategory.Add(itemCategory);
 
-            var result = _context.Remove(_context.TodoItemList.Single(x => x.UserId == user.Id && x.Id == itemList));
+            var result = _context.Remove(_context.TodoList.Single(x => x.UserId == user.Id && x.Id == itemList));
 
             var saveResult = await _context.SaveChangesAsync();
 
             return saveResult == 1;
         }
 
-        public async Task<bool> AddItemListForUser(IdentityUser user, TodoItemList todoItemList)
+        public async Task<bool> AddItemListForUser(IdentityUser user, TodoList todoItemList)
         {
             todoItemList.Id = new Guid();
             todoItemList.UserId = user.Id;
 
-            _context.TodoItemList.Add(todoItemList);
+            _context.TodoList.Add(todoItemList);
 
              var result = await _context.SaveChangesAsync();
 

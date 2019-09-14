@@ -9,11 +9,11 @@ namespace AspNetCoreTodo.Services
     public interface ITodoItemListService
     {
         //Get all the tables that belongs to user
-        Task<IEnumerable<TodoItemList>> GetAllItemListForUser(IdentityUser user);
-        Task<TodoItemList> GetItemListById(IdentityUser user, Guid id);
+        Task<IEnumerable<TodoList>> GetAllItemListForUser(IdentityUser user);
+        Task<TodoList> GetItemListById(IdentityUser user, Guid id);
         Task<bool> RemoveItemListForUser(IdentityUser user, Guid itemList);
 
-        Task<bool> AddItemListForUser(IdentityUser user, TodoItemList itemList);
+        Task<bool> AddItemListForUser(IdentityUser user, TodoList itemList);
 
         //create a table for the user
 

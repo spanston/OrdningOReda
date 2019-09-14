@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,7 +11,8 @@ namespace AspNetCoreTodo.Models
 
         public Guid Id { get; set; } //Globally unique identifier, long strings of letters and numbers
         public string UserId { get; set; }
-        //Todo: maybe switch from using string to a guid in order to be able to change category for item?
+        
+        [Required]
         public string ItemCategoryName { get; set; }
         public Guid ItemListId { get; set; }
 
