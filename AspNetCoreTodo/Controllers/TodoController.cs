@@ -182,7 +182,6 @@ namespace AspNetCoreTodo.Controllers
                 return Challenge();
             }
 
-
             var successful = await _todoItemService.RemoveItemCategoryAsync(categoryToBeRemoved, currentUser);
 
             return RedirectToAction("ItemList", "Todo", new TodoList {Id = categoryToBeRemoved.ItemListId});
